@@ -32,5 +32,5 @@ public class Todo {
 
     private LocalDateTime deadline;
 
-    private String priority = "Low"; // Low, Medium, High, Urgent
+    private String priority = "Low";
 }
