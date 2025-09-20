@@ -15,13 +15,11 @@ public class AuthController {
         this.authService = authService;
     }
 
-    // 🔹 Register: chỉ trả về message
     @PostMapping("/register")
     public String register(@RequestBody RegisterRequest request) {
         return authService.register(request);
     }
 
-    // 🔹 Login: trả về token
     @PostMapping("/login")
     public AuthResponse login(@RequestBody LoginRequest request) {
         return authService.login(request);

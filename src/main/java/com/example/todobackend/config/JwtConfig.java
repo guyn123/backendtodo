@@ -19,7 +19,7 @@ public class JwtConfig {
     private Key getKey() {
         return Keys.hmacShaKeyFor(secret.getBytes());
     }
-
+    //tạo token tù email
     public String generateToken(String email) {
         return Jwts.builder()
                 .setSubject(email)
@@ -28,7 +28,7 @@ public class JwtConfig {
                 .signWith(getKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
-
+    //lấy email từ token
     public String getEmailFromToken(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getKey())
@@ -37,7 +37,7 @@ public class JwtConfig {
                 .getBody()
                 .getSubject();
     }
-
+    //kiểm tra token hợp lệ
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(getKey()).build().parseClaimsJws(token);
