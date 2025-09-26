@@ -44,4 +44,11 @@ public class TodoController {
         User user = userService.getByEmail(authentication.getName());
         todoService.deleteTodo(id, user);
     }
+
+    // ✅ Xóa nhiều todo
+    @DeleteMapping
+    public void deleteTodos(Authentication authentication, @RequestBody List<Long> ids) {
+        User user = userService.getByEmail(authentication.getName());
+        todoService.deleteTodos(ids, user);
+    }
 }

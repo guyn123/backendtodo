@@ -58,6 +58,17 @@ public class TodoService {
         todoRepository.delete(todo);
     }
 
+    // ✅ Xóa nhiều todo
+    public void deleteTodos(List<Long> ids, User user) {
+        List<Todo> todos = todoRepository.findAllById(ids);
+        for (Todo todo : todos) {
+            if (!todo.getUser().getId().equals(user.getId())) {
+                throw new RuntimeException("Unauthorized to delete todo with id: " + todo.getId());
+            }
+        }
+        todoRepository.deleteAll(todos);
+    }
+
     private TodoResponse toResponse(Todo todo) {
         return new TodoResponse(
                 todo.getId(),
